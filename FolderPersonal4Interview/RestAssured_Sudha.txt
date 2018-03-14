@@ -1,0 +1,208 @@
+package com.wbl.test;
+
+
+import org.testng.Assert;
+
+import org.testng.annotations.Test;
+
+
+
+import com.wbl.base.BaseApiTest;
+
+
+import io.restassured.http.ContentType;
+
+
+import io.restassured.response.Response;
+
+
+import static io.restassured.RestAssured.*;
+
+import static org.hamcrest.Matchers.*;
+
+
+import java.io.IOException;
+
+import java.io.InputStream;
+
+
+
+
+public class RestAssuredAPITest extends BaseApiTest 
+{
+	
+int put_id;
+	
+////////sspeak....chekc end point....................
+	
+@Test
+	//checking the endpoint here
+	
+public void get1(){   
+		
+given().when().get(endPoint+"?authentication=false").then().statusCode(200);
+	
+}
+	
+	
+
+@Test
+	//getting the response in the form of a string
+	
+public void get2(){
+		
+Response response;
+		
+response=given().when().get(endPoint+"?authentication=false").then().statusCode(200).extract().response();
+
+System.out.println("this is a response----"+response.asString());
+		
+	
+}
+
+
+
+@Test
+	//validating on the particular subject
+	
+public void get3(){
+		
+//Response response;
+		
+given().when().get(endPoint+"?authentication=false").then().statusCode(200)
+.body("[1].id" , equalTo(3))
+.body("[1].name", equalTo("Python"));
+
+}
+
+ 
+
+@Test
+ 
+ 
+public void postdata(){
+	
+given().contentType(ContentType.JSON).body("{\"categoryid\":\"1\","+"\"name\":\"RestAssured_5\","+"\"icon_class\":\"RestAssured\"}")
+.when().post(endPoint+"?authentication=false").then().statusCode(201);
+ 
+}
+
+
+
+@Test
+ 
+ 
+public void postdata1(){
+	
+Response response;
+	
+response=given().contentType(ContentType.JSON).body("{\"categoryid\":\"1\","+"\"name\":\"RestAssured_6\","+"\"icon_class\":\"RestAssured\"}")
+
+.when().post(endPoint+"?authentication=false").then().statusCode(201).extract().response();
+	 
+System.out.println(response.asString());
+	
+System.out.println("the generaTED ID NUMBER OF THE SUBJECT-----"+response.path("id"));
+		
+ 
+}
+
+
+
+@Test
+
+
+public void postdata2(){
+	
+Response response;
+	
+response=
+ given().contentType(ContentType.JSON).body("{\"categoryid\":\"1\","+"\"name\":\"RestAssured_3.1.7\","+"\"icon_class\":\"RestAssured\"}")
+	 
+.when().post(endPoint+"?authentication=false").then().statusCode(201).extract().response();
+	 
+//System.out.println(response.asString());
+	
+//System.out.println("the generaTED ID NUMBER OF THE SUBJECT-----"+response.path("id"));
+	
+	 
+put_id= response.path("id");//stored that response id in a variable for put and delete operation
+	
+//System.out.println("the generaTED subject name OF THE SUBJECT for post-----"+response.path("name"));
+	
+//Assert.assertEquals(response.path("categoryid"), "1");
+	
+// System.out.println(response.asString());
+	
+/*byte[] byteArray = response.asByteArray();
+	
+System.out.println(+byteArray.length);
+	
+for (int i=0;i<byteArray.length;i++){
+
+ System.out.println(byteArray[i]);
+*/
+InputStream stream = response.asInputStream();
+	
+ try {
+		
+System.out.println(stream.read());
+	
+} catch (IOException e) {
+	
+	e.printStackTrace();
+
+	}
+	 
+//System.out.println(response.asInputStream());
+	 
+
+
+
+/*@Test(dependsOnMethods="postdata2")
+
+
+public void putdata1(){
+	
+Response response;
+	
+response=
+given().contentType(ContentType.JSON).body("{\"categoryid\":\"1\","+"\"name\":\"RestAssured_modified\","+"\"icon_class\":\"RestAssured\"}")
+	 
+.when().put(endPoint+"/"+put_id+"?authentication=false").then().statusCode(200).extract().response();
+	 
+//System.out.println(response.asString());
+	
+//System.out.println("the generaTED ID NUMBER OF THE SUBJECT-----"+response.path("id"));
+//it will give null
+	
+System.out.println("the generaTED name OF THE SUBJECT for put-----"+response.path("name"));
+	
+Assert.assertEquals(response.path("categoryid"), "1");
+	
+ //System.out.println(response.asString());
+
+}
+
+
+@Test(dependsOnMethods="postdata2")
+
+
+public void delete(){
+	
+Response response;  
+	
+response=given().contentType(ContentType.JSON).body("")
+.when().delete(endPoint+"/"+put_id+"?authentication=false").then().statusCode(204).extract().response();
+	 System.out.println(response.asString());
+	
+//System.out.println("the generaTED ID NUMBER OF THE SUBJECT-----"+response.path("id"));
+//it will give null
+	//System.out.println("the generaTED name OF THE SUBJECT for put-----"+response.path("name"));
+	
+//Assert.assertEquals(response.path("categoryid"), "1");
+	 
+//System.out.println(response.asString());
+}	
+
+*/}

@@ -1,0 +1,76 @@
+1. Tell me about yourself
+2. Explain about arraylist and linkedlist
+3. Does hashmap allow duplicates
+4. Is hasmap synchronized, if not how can we synchronize it
+5. How do you implement the hashset internally
+6. Difference between hashmap and hashset.
+7. Difference between comparator and comparable interface.
+8. What methods do both of them have.
+9. Which package does comparable come from, and which package does comparator come from.
+10. Why do we go for objects hashcode method.( He asked about this in depth about hascode)
+11. When do we go for generic collectioins
+12. Can you tell me the load factor of arraylist
+13. Explain about checked and unchecked exceptions with examples
+14. Explain the progression of exceptions.
+15. Can we use finally with try without catch.
+16. Why do we use finally method.
+17. Can we exit the finally method.
+18. How do we create threads? Which method is the most preferable and why?
+19. Can we use the run method without start?
+20. What do we test using restful web services?
+21. What are the assertions given by restful services frame work.
+22. What kind of response do we get, and do you have to convert to string.
+23. What are the different mathods used in RestAPI
+24. Why do you use payload in post method.
+25. Does framework give any default assertions when using Rest Assured.
+26. WHat are the reporting tools which you used other than default testng.xml reports.
+27. Did you use both XML Jason formats with RESTASSURED. If yes how?
+28. How does one integrate testng with maven.
+28. What are the advantages of test NG.
+29. For data driven testing, what did you use.
+30. Different key methods in Excel helper and how do you read.
+31. Can't one configure in testng.xml instead of using excel read.
+32.How to remove Duplicates from Arraylist ,without using Sets.
+
+what am proid of your job project.....why we need to hire you / 
+
+
+
+
+===============================JavaTpoint ---read collections----
+How do you implement the hashset internally
+
+6. Difference between hashmap and hashset.
+
+7. Difference between comparator and comparable interface.
+
+8. What methods do both of them have.
+
+9. Which package does comparable come from, and which package does comparator come from.
+
+10. Why do we go for objects hashcode method.( He asked about this in depth about hascode)
+ Is hasmap synchronized, if not how can we synchronize it
+5. How do you implement the hashset internally
+6. Difference between hashmap and hashset.
+7. Difference between comparator and comparable interface.
+8. What methods do both of them have.
+9. Which package does comparable come from, and which package does comparator come from.
+10. Why do we go for objects hashcode method.( He asked about this in depth about hascode)
+11. When do we go for generic collectioins
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dw

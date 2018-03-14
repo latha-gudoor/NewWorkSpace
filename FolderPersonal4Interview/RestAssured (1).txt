@@ -1,0 +1,76 @@
+public class RestAssuredTest extends BaseTest {
+	int id;
+    @Test(enabled=false) 
+	public void get(){
+    	Response response;
+    	
+     response=given().when().get(endpoint+"?authentication=false").then().statusCode(200).extract().response();
+    System.out.println("Response in get--------------"+response.asString());
+    
+	}
+    @Test(enabled=false) 
+   	public void get1(){
+         given().when().get(endpoint+"?authentication=false").then().statusCode(200)
+        .body("[0].id",equalTo(2)).body("[0].name", equalTo("C#"));
+   	}
+    @Test(enabled=false) 
+   	public void post(){
+         given().contentType(ContentType.JSON).body("{\"categoryid\":\"1\","+"\"name\":\"RESTAssured_21\","+"\"icon_class\":\"RestAssured\"}")
+         .when().post(endpoint+"?authentication=false").then().statusCode(201);
+   	}
+    @Test
+    public void post1(){
+    	Response response;
+      response=given().contentType(ContentType.JSON).body("{\"categoryid\":\"1\","+"\"name\":\"RESTAssured_118\","+"\"icon_class\":\"RestAssured\"}")
+        .when().post(endpoint+"?authentication=false").then().statusCode(201).extract().response();
+      System.out.println("Response in post------------"+response.asString());
+      System.out.println("Generated ID-------"+response.path("id"));
+      id=response.path("id");
+      Assert.assertEquals(response.path("categoryid"),"1");
+  	}
+    @Test
+    public void put1(){
+    	Response response;
+        response=given().contentType(ContentType.JSON).body("{\"categoryid\":\"1\","+"\"name\":\"RESTAssured_45\","+"\"icon_class\":\"RestAssured\"}")
+        .when().put(endpoint+"/id/?authentication=false").then().statusCode(200).extract().response();
+        System.out.println("Response in put------------"+response.asString());
+}
+    @Test
+    public void delete(){
+    	Response response;
+        response=given().contentType(ContentType.JSON).body("")
+        .when().delete(endpoint+"/id/?authentication=false").then().statusCode(204).extract().response();
+        System.out.println("Response in delete------------"+response.asString());
+}}
+
+
+When req data is complex- they try to create java POJO entity class for reqdata.
+Using Jackson  jars we can convert a JSON object to  JAVA pojo - Marshalling
+JavaPojo to JSON Object – Unmarshalling
+
+RestAssured internally it uses Jackson when we pass java pojos
+
+
+ 3.Testing Parameter Combinations
+APIs handle communication between systems by assigning data values to parameters and passing those parameters through data requests. It’s necessary to test all possible parameter request combinations in the API to test for problems pertaining to specific configurations. A larger project could end up assigning two different values to the same parameter, or create instances where numerical values appear when text values should be. Adding an additional parameter exponentially increases the number of possible combinations.
+4. Sequencing the API Calls
+In many cases, API calls need to appear in a specific order to work correctly. This creates a sequencing challenge for the testing team. For example, if a call to return a user’s profile information goes through before the profile is created, the request will return an error. Alternatively, a call to create a map needs to run prior to placing location pins on the map to work correctly. This process can get increasingly difficult when working with multiple-threaded applications.
+5. Validating Parameters
+Testing teams may find validating the parameters sent through API requests challenging as well. The sheer number of parameters and use cases for those parameters can make it a daunting task. The team needs to make sure all parameter data uses the correct string or numerical data type, fits within length restrictions, fits within a designated value range, and passes other validation criteria. For example, U.S. phone numbers should appear in a 10-digit format, and returning a 5-digit zip code should trigger an invalidation error.
+6. Tracking System Integration
+The final challenge is making sure the API testing system is working correctly with the data tracking system. This is necessary to bring back correct responses on whether a call is working correctly. It’s also used to passively monitor API performance. Since this step can come late in the process, the team may be too fatigued to give it the attention it needs.
+API testing is an essential part of application development in the modern business environment. If your company is looking for the tools and expertise to thrive with API implementation, contact the experts at Apica today.
+**************************************************************************************************************
+Challenges for API Testing
+The interesting problems for testers are: 
+To make sure that the test harness varies the parameters of the API calls in such a way that it verifies the functionality as well as expose the failures. It includes exploring boundary condition and assigning common parameters
+Creating interesting parameter value combinations for calls with two or more parameters
+Identifying the content under which the API calls has to be made. Which might include setting external environment conditions ( peripheral devices, files, etc.) as well as internally stored data that affects the API
+Sequencing API calls as per the order in which the functionality will be executed
+To make the API produce useful results from successive calls.
+
+**********************************************************************
+One of the key aspect of Web service testing is to verify negative scenarios on the Endpoint. There could be many negative scenarios, some of them are
+Sending incomplete POST Data
+Sending Json data with incorrect syntax
+Sending incorrect Verb in the Request.

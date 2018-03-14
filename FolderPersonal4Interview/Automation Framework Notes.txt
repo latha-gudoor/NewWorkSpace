@@ -1,0 +1,50 @@
+AUTOMATION FRAME WORK:
+
+RECENT PROJECT:
+
+ My recent project is in United Health Groups, My appliction 
+ is one of the healthcare plan
+ in UHG it is web application . Where member can access there
+ PATIENT ELIGIBILITY&BENIFITS,
+ CLAIMS&PAYMENT
+ TOOLS&RESOURCES
+ NOTIFICATION/PRIOR AUTHERAZATION
+ CLINICAL RESOURCES.
+ PPO and HMO pricing status 
+ Physician directory in that they can check for speciality
+ Physician they are looking for 
+ Here we used selenium webdriver with java for UI automation and
+ TESTNG framework to generate the reports and 
+ MANUALLY we test the API's using POSTMAN AND 
+ Collections Browser and Collection Runner  
+ I involved in RESTAPI  AUTOMATION with using HTTP Client Libraries and REST ASSURED..
+
+1. We created automation frame work to reuse the code and application is to maintain.
+
+2.We used page object model and data driven combination in our project based on Java.
+
+3.We created page classes using selenum webdriver ,test classes using any unit testing frame work TestNG.
+
+4.We created base or parent classes to handle the common code.
+
+5.We inject the driver object that is need in all page classes using a common mechanism(Dependency Injection).
+
+6.We create utilites (helper classes will be static methods (Java) to deal with ccommon /resuable functionalities.
+
+Example:- Webdriver Utils,Excel Reader.Java,Takescreenshot.java,propertiesfile.java,log 4jutil.java,constants.java
+                     Webdriverwaitutils.java.
+
+7.We use TestNG for Assertions,testcase management using testng.xml files
+   Where we can combine different test cases as a test suites.
+   We can group testcases, we can handle dependent testcases (one test execution is depend on other),
+   We can prioritize test case, we can make use of in built html.xml reports from testng,(we can also customize the 
+   Reports using Ireporter,Itestlisteners from listener class, we can customize logs using apache 4j and testng- Testlisteneradapter.
+
+8.We have resources folder where we maintain  all the non java files- excel, driver executables,properties.
+
+9.We used maven for depency and build management(we execute tests by using maven cmds like
+    Mvn test ,mvn clean for this we integrate maven and testing together using surefire plugin configre pom.xml.
+
+10.We are also using GITHUB as code repository and jenkins for CI&CD.
+
+

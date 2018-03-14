@@ -1,0 +1,179 @@
+1)How to crossbrowser testing is done from xml file.
+
+Reason Cross Browser Issues
+
+Font size mismatch in different browsers.
+JavaScript implementation can be different.
+CSS,HTML validation difference can be there.
+Some browser still not supporting HTML5.
+Page alignment and div size.
+Image orientation.
+Browser incompatibility with OS. Etc
+
+
+public class CrossBrowserScript {
+
+	WebDriver driver;
+
+	/**
+	 * This function will execute before each Test tag in testng.xml
+	 * @param browser
+	 * @throws Exception
+	 */
+	@BeforeTest
+	@Parameters("browser")
+	public void setup(String browser) throws Exception{
+		//Check if parameter passed from TestNG is 'firefox'
+		if(browser.equalsIgnoreCase("firefox")){
+		//create firefox instance
+			System.setProperty("webdriver.firefox.marionette", ".\\geckodriver.exe");
+			driver = new FirefoxDriver();
+		}
+		//Check if parameter passed as 'chrome'
+		else if(browser.equalsIgnoreCase("chrome")){
+			//set path to chromedriver.exe
+			System.setProperty("webdriver.chrome.driver",".\\chromedriver.exe");
+			//create chrome instance
+			driver = new ChromeDriver();
+		}
+		//Check if parameter passed as 'Edge'
+				else if(browser.equalsIgnoreCase("Edge")){
+					//set path to Edge.exe
+					System.setProperty("webdriver.edge.driver",".\\MicrosoftWebDriver.exe");
+					//create Edge instance
+					driver = new EdgeDriver();
+				}
+		else{
+			//If no browser passed throw exception
+			throw new Exception("Browser is not correct");
+		}
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+	@Test
+	public void testParameterWithXML() throws InterruptedException{
+		driver.get("http://demo.guru99.com/V4/");
+		//Find user name
+		WebElement userName = driver.findElement(By.name("uid"));
+		//Fill user name
+		userName.sendKeys("guru99");
+		//Find password
+		WebElement password = driver.findElement(By.name("password"));
+		//Fill password
+		password.sendKeys("guru99");
+	}
+}
+
+
+testing.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestSuite" thread-count="2" parallel="tests" >
+
+<test name="ChromeTest">
+
+<parameter name="browser" value="Chrome" />
+
+<classes>
+
+<class name="parallelTest.CrossBrowserScript">
+
+</class>
+
+</classes>
+
+</test>
+
+<test name="FirefoxTest">
+
+<parameter name="browser" value="Firefox" />
+
+<classes>
+
+<class name="parallelTest.CrossBrowserScript">
+
+</class>
+
+</classes>
+
+</test>
+
+<test name="EdgeTest">
+
+<parameter name="browser" value="Edge" />
+
+<classes>
+
+<class name="parallelTest.CrossBrowserScript">
+
+</class>
+
+</classes>
+
+</test>
+
+</suite>
+-------------------------------------------------------------------------------------------
+
+What is Alert window/ JavaScript Alert and How to handle alert in Selenium Webdriver?
+
+How to handle Alert in Selenium WebDriver
+Alert interface provides the below few methods which are widely used in Selenium Webdriver.
+
+1) void dismiss() // To click on the 'Cancel' button of the alert.
+
+driver.switchTo().alert().dismiss();
+2) void accept() // To click on the 'OK' button of the alert.
+
+driver.switchTo().alert().accept();
+3) String getText() // To capture the alert message.
+
+driver.switchTo().alert().getText();			
+4) void sendKeys(String stringToSend) // To send some data to alert box.
+
+driver.switchTo().alert().sendKeys("Text");
+You can see a number of Alert methods are displayed as shown in below screen suggested by Eclipse.
+
+We can easily switch to alert from the main window by using Selenium's .switchTo() method.
+
+
+
+how to handle multiple windows
+difference between windowhandles and windowhandle.
+
+how to handle multiple popups
+------------------------------------------------------------------------------------
+how to scroll up and down in selenium.
+
+public class ScrollByPixel {
+
+    WebDriver driver;
+    @Test
+    public void ByPixel() {
+        System.setProperty("webdriver.chrome.driver", "E://Selenium//Selenium_Jars//chromedriver.exe");
+        driver = new ChromeDriver();
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        // Launch the application		
+        driver.get("http://demo.guru99.com/test/guru99home/");
+
+        //To maximize the window. This code may not work with Selenium 3 jars. If script fails you can remove the line below		
+        driver.manage().window().maximize();
+
+        // This  will scroll down the page by  1000 pixel vertical		
+        js.executeScript("window.scrollBy(0,1000)");
+    }
+}
+
+---------------------------------------------------------------------------
+
+Which of the following WebDriver commands is used to check the presence of a web element?
+
+1.   isElementExist
+2.   verifyElementPresent---------
+3.   isElementPresent
+4.   verifyTextPresent

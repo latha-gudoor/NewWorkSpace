@@ -1,0 +1,72 @@
+ @Test(enabled=false)
+	public void testScreenGet(){
+    	HttpClient client=HttpClientBuilder.create().build();
+    	HttpGet get=new HttpGet("https://api.qa.talentscreen.io/v1/subjects?authentication=false");
+    	try {
+			HttpResponse response=client.execute(get);
+		    String responseString=IOUtils.toString(response.getEntity().getContent());
+		    System.out.println(responseString);
+		    System.out.println(response.getStatusLine());
+		    System.out.println(response.getStatusLine().getStatusCode());
+		    JSONObject json=new JSONObject();
+		    json.put("Name", "Testing");
+		    json.put("Description","Java");
+		    String req=json.toString();
+		    System.out.println(req); 
+		
+    	}
+		 catch (IOException e) {
+			 e.printStackTrace();
+		}
+    	
+		
+	}
+    @Test(enabled=true)
+   	public void testScreenPost(){
+       	HttpClient client=HttpClientBuilder.create().build();
+       	HttpPost post =new HttpPost("https://api.qa.talentscreen.io/v1/subjects?authentication=false");
+       	try {
+   			
+   		    JSONObject json=new JSONObject();
+		    json.put("Name", "Testing");
+		    json.put("Description","Java");
+		    String req=json.toString();
+		    System.out.println(req); 
+		    post.setEntity(new StringEntity(req));
+		    HttpResponse response=client.execute(post);
+   		    String responseString=IOUtils.toString(response.getEntity().getContent());
+   		    System.out.println(responseString);
+   		    System.out.println(response.getStatusLine());
+   		    System.out.println(response.getStatusLine().getStatusCode());
+   		
+       	}
+   		 catch (IOException e) {
+   			 e.printStackTrace();
+   		}
+       	
+   		
+   	}
+    @Test(enabled=false)
+   	public void testScreenPut(){
+       	HttpClient client=HttpClientBuilder.create().build();
+       	HttpPut put =new HttpPut("https://api.qa.talentscreen.io/v1/subjects/68?authentication=false");
+       	try {
+   			HttpResponse response=client.execute(put);
+   		    String responseString=IOUtils.toString(response.getEntity().getContent());
+   		    System.out.println(responseString);
+   		    System.out.println(response.getStatusLine());
+   		    System.out.println(response.getStatusLine().getStatusCode());
+   		    JSONObject json=new JSONObject();
+		    json.put("Name", "Testing");
+		    json.put("Description","Java");
+		    String req=json.toString();
+		    System.out.println(req); 
+   		
+       	}
+   		 catch (IOException e) {
+   			 e.printStackTrace();
+   		}
+       	
+   		
+   	}
+}

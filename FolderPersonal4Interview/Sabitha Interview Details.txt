@@ -1,0 +1,103 @@
+Sabitha Interview with Elite sloutions.[ Vendor CIGNEX]
+
+REQUIREMENT:
+
+
+
+
+Job & Project Description
+
+Required Skills:
+
+•  Experience using Postman or SOAPUI,
+ Defect tracking using jira.
+
+
+•  Ability to write SQL Queries to validate backend data
+
+
+•  Experience with Selenium or other automation tools a plus
+
+
+•  Development/execution of test plans and test scripts to test cross platform functionality(responsive applications)
+
+
+•  Works with cross functional team to establish/maintain consistent test methodology, resolves questions during testing process
+
+
+•  Interface with multiple groups across the organization and with external partners and vendors.
+
+
+•  Analyzes, tests, and certifies certain flows in application-specific software
+
+
+•  Conducts quality reviews of business requirements and functional specification document
+
+
+•  Experience working in onshore/offshore model
+
+
+•  Experience in defining and developing QA processes, standards 
+
+and best practices
+
+ 
+
+ 
+
+Pls check the Parameters as per the requirement
+
+  
+Manual Testing Skills 
+  
+Test Management
+
+  
+Defect Management   [JIRA] *
+  
+
+Scrum Artifacts
+
+
+   Webservices Testing  [Soap ui, postman] *
+   
+
+Selenium    
+   
+
+SQL Queries    [Database testing]*
+   
+
+Communication Skills
+
+ROUND ONE:
+
+ 1. What methodology you follwed in your project and explain?
+
+ 2.Web services ( with using postman and soap ui)?
+
+ 3. Explain the sprint flow?
+
+ 4. About jira?
+
+ 5.  Did You involved in the integration testing? how do perform Integration in ur project?
+ 6. Testing framework Testng?
+  7. explain sql joins?
+ 8. how do you validate the data in the data base?
+
+ 9. Where did u use joins in ur project?
+
+ 10.Regression testing, when do u perform regression?
+
+       [when will you perform regression]
+ 11.Explain UAT?
+
+ 12.Alpha and beta testing?
+ 13. How did you test rest apis in ur project?
+
+ 14.Waht are things you test in the rest api's?
+ 14. Rate Your self How good Ur in SQL?
+ 15. when will you sign off the project?
+
+
+  

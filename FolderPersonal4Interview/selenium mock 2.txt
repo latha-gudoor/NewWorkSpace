@@ -1,0 +1,182 @@
+1) how to handle frames in Selenium?
+ANS:How to identify the iframe:
+We cannot detect the frames by just seeing the page or by inspecting Firebug.
+
+Observe the below image, Advertisement being displayed is an Iframe, we can
+
+We can identify the iframes using methods given below:
+
+Right click on the element, If you find the option like 'This Frame' then it is an iframe.(Please refer the above diagram)
+Right click on the page and click 'View Page Source' and Search with the 'iframe', if you can find any tag name with the 'iframe' then it is meaning to say the page consisting an iframe.
+In above diagram, you can see that 'This Frame' option is available upon right clicking, so we are now sure that it is an iframe.
+
+We can even identify total number of iframes by using below snippet.
+
+Int size = driver.findElements(By.tagName("iframe")).size();
+
+How to switch over the elements in iframes using Web Driver commands:
+Basically, we can switch over the elements in frames using 3 ways.
+
+By Index
+By Name or Id
+By Web Element
+Switch to the frame by index:
+
+Index is one of the attributes for the Iframe through which we can switch to it.
+
+Index of the iframe starts with '0'.
+
+Suppose if there are 100 frames in page, we can switch to the iframe by using index.
+
+driver.switchTo().frame(0);
+driver.switchTo().frame(1);
+
+driver.switchTo().frame("iframe1");
+driver.switchTo().frame("id of the element");
+
+
+
+
+public class SwitchToFrame_ID {
+public static void main(String[] args) {
+
+		WebDriver driver = new FirefoxDriver(); //navigates to the Browser
+	    driver.get("http://demo.guru99.com/test/guru99home/"); 
+	       // navigates to the page consisting an iframe
+
+	       driver.manage().window().maximize();
+	       driver.switchTo().frame("a077aa5e"); //switching the frame by ID
+
+			System.out.println("********We are switch to the iframe*******");
+     		driver.findElement(By.xpath("html/body/a/img")).click();
+  		    //Clicks the iframe
+       
+  			System.out.println("*********We are done***************");
+      }
+}		
+
+
+	    driver.switchTo().defaultContent(); //switching back from the iframe
+
+-------------------------------------------------------------------------------------
+inner iframes in outer iframes::::
+
+
+public class FramesInsideFrames {
+public static void main(String[] args) {
+WebDriver driver=new FirefoxDriver();
+	    driver.get("Url");
+	    driver.manage().window().maximize();
+	    driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+	    int size = driver.findElements(By.tagName("iframe")).size();
+	    System.out.println("Total Frames --" + size);
+               
+		// prints the total number of frames 
+		driver.switchTo().frame(0); // Switching the Outer Frame    		
+	    System.out.println (driver.findElement(By.xpath("xpath of the outer element ")).getText());
+
+		//Printing the text in outer frame
+		size = driver.findElements(By.tagName("iframe")).size();
+	    // prints the total number of frames inside outer frame           
+                                                                                                          
+	    System.out.println("Total Frames --" + size);
+	    driver.switchTo().frame(0); // Switching to innerframe
+	    System.out.println(driver.findElement(By.xpath("xpath of the inner element ")).getText());
+		
+		//Printing the text in inner frame
+		driver.switchTo().defaultContent();
+	}
+}
+
+-----------------------------------------------------------------------------
+
+
+How to capture Screenshot in Selenium? Can we capture screenshot only when a test fails?
+
+
+// Create a package in eclipse
+package captureScreenshot;
+
+// Import all classes and interface
+import java.io.File;
+import library.Utility;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
+public class FacebookScreenshot {
+
+// Create Webdriver reference
+WebDriver driver;
+
+@Test
+public void captureScreenshot() throws Exception
+{
+
+// Initiate Firefox browser
+driver=new FirefoxDriver();
+
+// Maximize the browser
+driver.manage().window().maximize();
+
+// Pass application url
+driver.get("http://www.facebook.com");
+
+// Here we are forcefully passing wrong id so that it will fail our testcase
+driver.findElement(By.xpath(".//*[@id='emailasdasdas']")).sendKeys("Learn Automation");
+
+
+}
+
+
+
+
+
+// It will execute after every test execution 
+@AfterMethod
+public void tearDown(ITestResult result)
+{
+
+// Here will compare if test is failing then only it will enter into if condition
+if(ITestResult.FAILURE==result.getStatus())
+{
+try 
+{
+// Create refernce of TakesScreenshot
+TakesScreenshot ts=(TakesScreenshot)driver;
+
+// Call method to capture screenshot
+File source=ts.getScreenshotAs(OutputType.FILE);
+
+// Copy files to specific location here it will save all screenshot in our project home directory and
+// result.getName() will return name of test case so that screenshot name will be same
+FileUtils.copyFile(source, new File("./Screenshots/"+result.getName()+".png"));
+
+System.out.println("Screenshot taken");
+} 
+catch (Exception e)
+{
+
+System.out.println("Exception while taking screenshot "+e.getMessage());
+} 
+
+
+
+}
+// close application
+driver.quit();
+}
+
+
+
+}
+
+---------------------------------------------------------------------------------------------
+
